@@ -1,3 +1,5 @@
+Mainly for sean to read stuff from his enjin minecraft sqlite but if you find this and feel nostalgic eat your heart out
+
 # Steps:
 
 Make sure you have python3 installed
