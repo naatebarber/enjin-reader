@@ -1,32 +1,39 @@
-import API from '@/api'
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Table, TableHeader, TableHead, TableBody, TableCell, TableRow } from '@/components/ui/table'
-import { Card } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import API from "@/api";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Table,
+  TableHeader,
+  TableHead,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import Loading from "./Loading";
 
 interface ForumsProps {
-  api: API
+  api: API;
 }
 
 const Forums: React.FC<ForumsProps> = ({ api }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [forums, setForums] = useState<any>();
 
   useEffect(() => {
-    api.getForums().then(setForums)
-  }, [])
+    api.getForums().then(setForums);
+  }, []);
+
+  if (!forums) return <Loading />;
 
   return (
-    <div className='p-10'>
+    <div className="p-10">
+      <div className="text-lg font-bold">Forums</div>
 
-      <div className='text-lg font-bold'>
-        Forums
-      </div>
+      <Separator className="my-6" />
 
-      <Separator className='my-6'/>
-
-      <Card className='p-4 bg-gray-50 rounded-sm'>
+      <Card className="p-4 bg-gray-50 rounded-sm">
         <Table>
           <TableHeader>
             <TableRow>
@@ -39,9 +46,13 @@ const Forums: React.FC<ForumsProps> = ({ api }) => {
           </TableHeader>
           <TableBody>
             {forums?.map((forum: any) => (
-              <TableRow key={forum.forum_id} className='cursor-pointer' onClick={() => {
-                navigate(`/threads?forum=${forum.forum_id}`)
-              }}>
+              <TableRow
+                key={forum.forum_id}
+                className="cursor-pointer"
+                onClick={() => {
+                  navigate(`/threads?forum=${forum.forum_id}`);
+                }}
+              >
                 <TableCell>{forum.forum_name}</TableCell>
                 <TableCell>{forum.forum_description}</TableCell>
                 <TableCell>{forum.forum_threads}</TableCell>
@@ -53,7 +64,7 @@ const Forums: React.FC<ForumsProps> = ({ api }) => {
         </Table>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default Forums
+export default Forums;

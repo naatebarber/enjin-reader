@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class DB:
     def __init__(self, sqlite_path: str):
         self.path = sqlite_path
@@ -23,7 +24,7 @@ class DB:
                 forums_list.append(forum_dict)
 
             return forums_list
-        
+
         except sqlite3.Error as e:
             print(f"SQLite error: {e}")
 
@@ -52,4 +53,3 @@ class DB:
 
     def close(self):
         self.con.close()
-    
