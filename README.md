@@ -6,7 +6,7 @@ Make sure you have python3 installed
 
 # Build/run:
 
- - Drag `playsurvivalgames.sqlite` into this folder.
+ - Drag `playsurvivalgames.sqlite` (or whatever your enjin sqlite is called) into this folder.
  - Open a terminal and navigate to this dir.
  - Run the following in the terminal:
 
